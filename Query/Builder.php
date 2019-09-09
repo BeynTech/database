@@ -85,6 +85,13 @@ class Builder
     public $from;
 
     /**
+     * The table partition which the query is targeting.
+     *
+     * @var string
+     */
+    public $partition;
+
+    /**
      * The table joins for the query.
      *
      * @var array
@@ -315,6 +322,19 @@ class Builder
     public function from($table)
     {
         $this->from = $table;
+
+        return $this;
+    }
+
+    /**
+     * Set the table which the query is targeting.
+     *
+     * @param array $partition
+     * @return $this
+     */
+    public function partition($partition=[])
+    {
+        $this->partition = is_array($partition) ? $partition : func_get_args();
 
         return $this;
     }
